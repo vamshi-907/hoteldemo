@@ -1,0 +1,117 @@
+{% extends 'Navbar/usernavbar.html' %}
+{% load static %}
+<html lang="en">
+{% block body %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Hotels</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <style>
+           .container-fluid {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-top: 10px;
+            margin-left: 60px;
+            margin-right: 10px;
+        }
+        .hotel-details {
+            margin-top: 50px;
+            margin-left: 60px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+         .hotel-details img {
+            margin-right: 25px;
+            margin-bottom: 50px;
+            max-width: 325px;
+            max-height: 300px;
+            object-fit: cover;
+        }
+
+
+        .hotel-details .hotel-info {
+            flex: 1;
+            margin-bottom: 20px;
+        }
+
+        .hotel-details .hotel-info h1 {
+            margin-top: 0;
+            margin-bottom: 40px;
+            margin-right: 150px;
+        }
+
+        .hotel-details .hotel-info p {
+            margin-bottom: 50px;
+        }
+
+        .amenities-list {
+            margin-top: 5px;
+            margin-bottom: 70px;
+        }
+
+        .amenities-list p {
+            margin-bottom: 20px;
+        }
+
+         .reserve-btn {
+            margin-top: 150px;
+            text-align: center;
+            margin-left: 150px;
+            background-color: #4CAF50; /* Updated button color to a vibrant green */
+            border: none;
+             padding: 8px 16px;
+            border-radius: 5px;
+            text-decoration: none;
+            color: white;
+        }
+        .bold {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="results"></div>
+    <h1 align="center">Hotel Details</h1>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                {% for hotel in hotels %}
+                <div class="hotel-details">
+                    {% for image in hotel.images.all %}
+                    <img src="{{ image.image.url }}" class="card-img-top" alt="Hotel Image">
+                    {% endfor %}
+                </div>
+                    <div class="hotel-info">
+                        <h1>{{ hotel.name }}</h1>
+                        <p><i class="bi bi-star-fill"></i> Rating: {{ hotel.rating }}</p>
+                        <p>Room Type: {{ hotel.room_type }}</p>
+                        <p class="bold">Starting Price: ₹ {{ hotel.price_per_night }}</p>
+                        <p>Number of Rooms: {{ hotel.number_of_rooms }}</p>
+                    </div>
+                    <div class="amenities-list">
+                        <h3>Popular Amenities</h3>
+                        <p><i class="fas fa-wifi"></i> Free WiFi {% if hotel.wifi_available %}  {% else %} <i class="fas fa-times"></i> {% endif %}</p>
+                        <p><i class="fas fa-swimming-pool"></i> Pool {% if hotel.pool_available %}  {% else %} <i class="fas fa-times"></i> {% endif %}</p>
+                        <p><i class="fas fa-dumbbell"></i> Gym {% if hotel.gym_available %}  {% else %} <i class="fas fa-times"></i> {% endif %}</p>
+                        <p><i class="fas fa-tshirt"></i> Laundry facilities {% if hotel.Laundry_facilities %}  {% else %} <i class="fas fa-times"></i> {% endif %}</p>
+                        <p><i class="fas fa-car"></i> Parking available {% if hotel.Parking %}  {% else %} <i class="fas fa-times"></i> {% endif %}</p>
+                        <p><i class="fas fa-utensils"></i> Restaurant {% if hotel.Restaurant %} {% else %} <i class="fas fa-times"></i> {% endif %}</p>
+                    </div>
+                    <div >
+                        <a href="{% url 'hotel_payment' %}">  <button class="reserve-btn">Book Room</button></a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+{% endblock %}
+</html>

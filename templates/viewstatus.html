@@ -1,0 +1,32 @@
+{% extends 'Navbar/usernavbar.html' %}
+{% load static %}
+{% block body %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>Booking Status</title>
+</head>
+<body>
+    <h1>Payment Status</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Hotel Name</th>
+                <th>Amount Paid</th>
+                <th>Order ID</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for payment in payments %}
+            <tr>
+                <td>{{ payment.hotel_name }}</td>
+                <td>{{ payment.amount_paid }}</td>
+                <td>{{ payment.order_id }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+{% endblock %}
+
+</html>

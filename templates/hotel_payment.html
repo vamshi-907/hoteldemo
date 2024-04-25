@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+  <style>
+      /* Additional CSS styles */
+.container {
+  text-align: center;
+}
+
+/* Styles for the form */
+form {
+  margin-top: 20px;
+}
+
+/* Button style */
+button[type="submit"] {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+/* Input field style */
+input[type="text"], input[type="email"] {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+/* Label style */
+label {
+  font-weight: bold;
+}
+
+/* Error message style */
+.error-message {
+  color: red;
+  margin-top: 5px;
+}
+
+  </style>
+  <h2 style="text-align:center">Book Hotel</h2>
+  <div class="container" style="width:50%; margin: 0 auto; padding: 20px; background-color: #f0f8ff; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+    {% crispy form %}
+    <form action="{% url 'payment-status' %}" method="POST" style="margin-top: 20px;">
+      {% csrf_token %}
+      <script
+        src="https://checkout.razorpay.com/v1/checkout.js"
+        data-key="rzp_test_e3EA7eBqB0PT2x"
+        data-amount="{{payment.amount}}"
+        data-currency="INR"
+        data-order_id="{{payment.id}}"
+        data-buttontext="Pay with Razorpay"
+        data-name="Hotels.com"
+        data-description="Hotel"
+        data-image="https://example.com/your_logo.jpg"
+        data-prefill.name="{{payment.name}}"
+        data-prefill.email="venkatasaivamshi23@gmail.com"
+        data-theme.color="#F37254"
+      ></script>
+      <input type="hidden" custom="Hidden Element" name="hidden"/>
+    </form>
+  </div>
+{% endblock %}

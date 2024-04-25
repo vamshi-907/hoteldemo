@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Login Page</title>
+    <script src="https://kit.fontawesome.com/f3e68e7a0f.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            box-sizing: border-box;
+        }
+
+        .container {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: linear-gradient(rgba(20, 50, 100, 0.6), rgba(20, 50, 100, 0.6)), url("/static/images/sign-up-bg.jpg");
+            background-position: center;
+            background-size: cover;
+
+        }
+
+        .form-box {
+            width: 100%;
+            max-width: 450px;
+            background-color: rgba(255, 255, 255, 0.5);
+            padding: 50px 60px 70px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .form-box h1 {
+            font-size: 30px;
+            margin-bottom: 30px;
+            color: black;
+        }
+
+        .input-field {
+            position: relative;
+            margin-bottom: 20px;
+            animation: slideInLeft 1s ease forwards;
+        }
+
+        .input-field input {
+            width: calc(100% - 20px);
+            padding: 10px 30px 10px 40px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        .input-field i {
+            position: absolute;
+            top: 50%;
+            left: 20px;
+            transform: translateY(-50%);
+            color: #555;
+        }
+
+        .input-field input:focus {
+            border-color: #3ceeae;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4f868c;
+            color: white;
+            font-size: larger;
+            cursor: pointer;
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .btn:hover {
+            background-color: #357376;
+        }
+
+        /* Keyframes for animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="form-box">
+        <h1> Login</h1>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="input-group">
+                <div class="input-field">
+                    <i class="fas fa-user"></i>
+                    <input type="text" class="form-control" name="username" id="username" placeholder="Enter Username">
+                </div>
+                <div class="input-field">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" class="form-control" name="password" id="password" placeholder="Enter Password">
+                </div>
+                <br>
+                <input type="submit" value="Login" class="btn">
+            </div>
+        </form>
+        <br>
+        <h4>Haven't registered yet? Click here to <a href="{% url 'signup' %}" style="color: #4f868c;">Signup</a></h4>
+    </div>
+</div>
+
+<script>
+    {% if login_success %}
+        Toastify({
+            text: "Login successful. Welcome!",
+            backgroundColor: "#41ad49",
+            duration: 3000,
+            gravity: "top", // Display toast at the top of the screen
+            position: "right", // Position toast to the right
+            close: true, // Show close button
+            stopOnFocus: true, // Stop timeout when the toast is hovered over
+            className: "toastify-big", // Custom class for styling
+            style: {
+                // Custom styles for the toast
+                fontSize: "18px",
+                padding: "20px",
+                borderRadius: "10px",
+                animation: "bounceIn 0.6s",
+            }
+        }).showToast();
+    {% endif %}
+    {% if fail %}
+        document.querySelector('.otp-field').style.display = 'block';
+    {% endif %}
+</script>
+{% if messages %}
+  {% for message in messages %}
+    <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+  {% endfor %}
+{% endif %}
+
+</body>
+</html>

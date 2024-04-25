@@ -1,0 +1,122 @@
+{% extends 'Navbar/adminnavbar.html' %}
+{% load static %}
+<html lang="en">
+{% block body %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Hotel</title>
+    <style>
+
+        /* Custom Styles */
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        .form-group label {
+            font-weight: bold;
+        }
+        .form-group input[type="text"],
+        .form-group input[type="number"],
+        .form-group textarea,
+        .form-group input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .form-group input[type="checkbox"] {
+            margin-top: 5px;
+            margin-bottom: 15px;
+            margin-left: 5px;
+        }
+        .form-group button[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            display: block;
+            width: 100%;
+        }
+        .form-group button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Add Hotel</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name">
+            </div>
+            <div class="form-group">
+                <label for="location">Location:</label>
+                <input type="text" id="location" name="location">
+            </div>
+            <div class="form-group">
+                <label for="rating">Rating:</label>
+                <input type="number" id="rating" name="rating" step="0.01">
+            </div>
+            <div class="form-group">
+                <label for="room_type">Room Type:</label>
+                <input type="text" id="room_type" name="room_type">
+            </div>
+            <div class="form-group">
+                <label for="price_per_night">Starting Price:</label>
+                <input type="number" id="price_per_night" name="price_per_night" step="0.01">
+            </div>
+            <div class="form-group">
+                <label for="number_of_rooms">Number of Rooms:</label>
+                <input type="number" id="number_of_rooms" name="number_of_rooms">
+            </div>
+            <div class="form-group">
+                <label for="wifi_available">WiFi Available:</label>
+                <input type="checkbox" id="wifi_available" name="wifi_available" value="true">
+            </div>
+            <div class="form-group">
+                <label for="pool_available">Pool Available:</label>
+                <input type="checkbox" id="pool_available" name="pool_available" value="true">
+            </div>
+            <div class="form-group">
+                <label for="gym_available">Gym Available:</label>
+                <input type="checkbox" id="gym_available" name="gym_available" value="true">
+            </div>
+               <div class="form-group">
+                <label for="Laundry_facilities">Laundry Available:</label>
+                <input type="checkbox" id="Laundry_facilities" name="Laundry_facilities" value="true">
+            </div>
+            <div class="form-group">
+                <label for="Parking">Parking Available:</label>
+                <input type="checkbox" id="Parking" name="Parking" value="true">
+            </div>
+            <div class="form-group">
+                <label for="Restaurant">Restaurant Available:</label>
+                <input type="checkbox" id="Restaurant" name="Restaurant" value="true">
+            </div>
+            <div class="form-group">
+                <label for="images">Hotel Images:</label>
+                <input type="file" id="images" name="images" multiple>
+            </div>
+            <div class="form-group">
+                <button type="submit">Add Hotel</button>
+            </div>
+        </form>
+    </div>
+</body>
+{% endblock %}
+</html>

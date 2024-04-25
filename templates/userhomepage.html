@@ -1,0 +1,488 @@
+{% extends 'Navbar/usernavbar.html' %}
+{% load static %}
+<html lang="en">
+  <head>
+      {% block body%}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="#" />
+    <title>Hotel Management System</title>
+    <style>
+ @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
+
+:root {
+  --primary-color: #2c3855;
+  --primary-color-dark: #435681;
+  --text-dark: #333333;
+  --text-light: #767268;
+  --extra-light: #f3f4f6;
+  --white: #ffffff;
+  --max-width: 1200px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.section__container {
+  max-width: 100%;
+  margin: auto;
+  padding: 5rem 1rem;
+}
+
+.section__header {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  width: 100%;
+  display: flex;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+.header__container {
+  padding: 1rem 1rem 5rem 1rem;
+}
+
+.header__image__container {
+  position: relative;
+  min-height: 500px;
+  border-radius: 2rem;
+  overflow: hidden; /* Ensure the video stays within the container */
+}
+
+.header__video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(100%);
+}
+
+
+.header__content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  z-index: 1;
+}
+
+.header__content h1 {
+  font-size: 3.5rem;
+  line-height: 4rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+
+}
+
+.header__content p {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.booking__container {
+  position: absolute;
+  bottom: -5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 6rem);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 3rem 2rem;
+  border-radius: 2rem;
+  background-color: rgba(255, 255, 255, 0.7);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.1);
+}
+
+.booking__container form {
+  width: 100%;
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.booking__container .input__group {
+  width: 100%;
+  position: relative;
+}
+
+.booking__container label {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--text-dark);
+  pointer-events: none;
+  transition: 0.3s;
+}
+
+.booking__container input {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 1rem;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  border-bottom: 1px solid var(--primary-color);
+  color: var(--text-dark);
+}
+
+.booking__container input:focus ~ label {
+  font-size: 0.8rem;
+  top: 0;
+}
+
+.booking__container .form__group p {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--text-light);
+}
+
+.booking__container .btn {
+  padding: 1rem;
+  outline: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--white);
+  background-color: var(--primary-color);
+  border-radius: 100%;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.booking__container .btn:hover {
+  background-color: var(--primary-color-dark);
+}
+
+.popular__grid {
+  margin-top: 4rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.popular__card {
+  overflow: hidden;
+  border-radius: 1rem;
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease; /* Adding transition for smooth hover effect */
+}
+
+.popular__card:hover {
+  box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.2); /* Change box shadow on hover */
+}
+
+.popular__card a {
+  display: block;
+}
+
+.popular__content {
+  padding: 1rem;
+}
+
+.popular_card_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.popular_card_header h4 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.popular__content p {
+  color: var(--text-light);
+}
+
+
+.client {
+  background-color: var(--extra-light);
+}
+
+.client__grid {
+  margin-top: 4rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.client__card {
+  padding: 2rem;
+  background-color: var(--white);
+  border-radius: 1rem;
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.client__card img {
+  max-width: 80px;
+  margin: auto;
+  margin-bottom: 1rem;
+  border-radius: 100%;
+}
+
+.client__card p {
+  text-align: center;
+  color: var(--text-dark);
+}
+
+.reward__container {
+  padding: 2rem;
+  text-align: center;
+  border-radius: 2rem;
+  box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.1);
+}
+
+.reward__container p {
+  margin-bottom: 1rem;
+  font-weight: 600;
+  color: var(--text-light);
+}
+
+.reward__container h4 {
+  max-width: 500px;
+  margin: auto;
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.reward__btn {
+  padding: 1rem 3rem;
+  outline: none;
+  border: none;
+  font-size: 1rem;
+  color: var(--white);
+  background-color: var(--primary-color);
+  border-radius: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.reward__btn:hover {
+  background-color: var(--primary-color-dark);
+}
+
+
+@media (width < 900px) {
+  .booking__container form {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .popular__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .client__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .footer__container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (width < 600px) {
+  .nav__links {
+    display: none;
+  }
+
+  .header__container {
+    padding-bottom: 25rem;
+  }
+
+  .booking__container {
+    flex-direction: column;
+    bottom: -25rem;
+  }
+
+  .booking__container form {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .popular__grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .client__grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .footer__container {
+    gap: 2rem;
+  }
+}
+
+
+    </style>
+  </head>
+   <body style="background-color: #DFF5FF;">
+
+
+    <header class="section__container header__container">
+      <div class="header__image__container">
+  <video autoplay muted loop class="header__video">
+    <source src="{% static 'images/hotel video.mp4' %}" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</div>
+       <div class="header__content">
+      <h1 >Enjoy Your Dream Vacation</h1>
+      <p>Welcome to our hotel management system</p>
+    </div>
+
+
+      </div>
+    </header>
+
+    <section class="section_container popular_container">
+      <h2 class="section__header">Popular Hotels</h2>
+      <div class="popular__grid">
+        <div class="popular__card">
+
+          <a href="{% url 'bookhotel' %}"><img src="{% static 'images/hotel 1.jpg' %}" alt="popular hotel" ></a>
+          <div class="popular__content">
+            <div class="popular_card_header">
+              <h4>The Taj Mahal Hotel</h4>
+              <h4>Rs 21,000</h4>
+            </div>
+            <p>Mumbai, India</p>
+           <a href="{% url 'bookhotel' %}"> <p>See full details</p></a>
+          </div>
+        </div>
+        <div class="popular__card">
+          <a href="{% url 'bookhotel' %}"><img src="{% static 'images/hotel 2.jpg' %}" alt="popular hotel" /></a>
+          <div class="popular__content">
+            <div class="popular_card_header">
+              <h4> Novotel </h4>
+              <h4> Rs 24,000</h4>
+            </div>
+            <p>Visakhapatnam, India</p>
+             <a href="{% url 'bookhotel' %}"> <p>See full details</p></a>
+          </div>
+        </div>
+        <div class="popular__card">
+          <a href="{% url 'bookhotel' %}"> <img src="{% static 'images/hotel 3.jpg' %}" alt="popular hotel" /></a>
+          <div class="popular__content">
+            <div class="popular_card_header">
+              <h4>Marriott Hotel</h4>
+              <h4>Rs 9,000</h4>
+            </div>
+            <p>Hyderabad India</p>
+             <a href="{% url 'bookhotel' %}"> <p>See full details</p></a>
+          </div>
+        </div>
+        <div class="popular__card">
+          <a href="{% url 'bookhotel' %}"> <img src="{% static 'images/hotel 4.png' %}" alt="popular hotel" /></a>
+          <div class="popular__content">
+            <div class="popular_card_header">
+              <h4>ITC Grand Chola</h4>
+              <h4>Rs 15,000</h4>
+            </div>
+            <p>Chennai India</p>
+             <a href="{% url 'bookhotel' %}"> <p>See full details</p></a>
+          </div>
+        </div>
+        <div class="popular__card">
+          <a href="{% url 'bookhotel' %}"> <img src="{% static 'images/hotel 5.jpg' %}" alt="popular hotel" /></a>
+          <div class="popular__content">
+            <div class="popular_card_header">
+              <h4>Lemon Tree Hotel</h4>
+              <h4>Rs 4,000</h4>
+            </div>
+            <p>Bangalore, India</p>
+             <a href="{% url 'bookhotel' %}"> <p>See full details</p></a>
+          </div>
+        </div>
+        <div class="popular__card">
+          <a href="{% url 'bookhotel' %}"> <img src="{% static 'images/hotel 6.jpg' %}" alt="popular hotel" /></a>
+          <div class="popular__content">
+            <div class="popular_card_header">
+              <h4>Samrat Hotel</h4>
+              <h4>Rs 3,000</h4>
+            </div>
+            <p>Delhi India</p>
+             <a href="{% url 'bookhotel' %}"> <p>See full details</p></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="client" style="background-color: #DFF5FF;">
+      <div class="section__container client__container">
+        <h2 class="section__header">What our client say</h2>
+        <div class="client__grid">
+          <div class="client__card">
+           <h5 align="center">G Rishitha</h5>
+            <p>
+              The booking process was seamless, and the confirmation was
+              instant. I highly recommend WDM&Co for hassle-free hotel bookings.
+            </p>
+          </div>
+          <div class="client__card">
+            <h5 align="center">M Vamshi</h5>
+            <p>
+              The website provided detailed information about hotel, including
+              amenities, photos, which helped me make an informed decision.
+            </p>
+          </div>
+          <div class="client__card">
+           <h5 align="center">J Sahithi</h5>
+            <p>
+              I was able to book a room within minutes, and the hotel exceeded
+              my expectations. I appreciate WDM&Co's efficiency and reliability.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section__container">
+      <div class="reward__container">
+        <p>100+ discount codes</p>
+        <h4>Join rewards and discover amazing discounts on your booking</h4>
+        <button class="reward__btn">Join Rewards</button>
+      </div>
+    </section>
+
+
+
+
+
+
+  {% endblock %}
+  </body>
+</html>

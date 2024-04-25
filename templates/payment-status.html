@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if status %}
+    <div class="container">
+        <h2 style="text-align:center;">Transaction Successful. Thank you</h2>
+    </div>
+{% else %}
+    <div class="container">
+        <h2 style="text-align:center;">Transaction was Failed.</h2>
+    </div>
+{% endif %}
+    <div class="container" style="text-align:center">
+        <a href="{% url 'hotel_payment' %}">Book  one more</a>
+    </div>
+{% endblock %}

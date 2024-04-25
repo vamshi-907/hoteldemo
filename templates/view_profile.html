@@ -1,0 +1,40 @@
+{% extends 'Navbar/usernavbar.html' %}
+{% load static %}
+{% block body %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Profile</title>
+    <style>
+        .content-section {
+            margin: 20px;
+        }
+        .media {
+            display: flex;
+            align-items: center;
+        }
+        .account-img {
+            margin-right: 20px;
+            width: 100px;
+            height: 100px;
+        }
+        .media-body {
+            width: calc(100% - 100px);
+        }
+    </style>
+</head>
+<body>
+  <div class="content-section">
+      <div class="media" >
+          <img class="rounded-cricle account-img" src="{{ profile.image.url }}">
+          <div class="media-body">
+              <h5>Username : {{profile.user_id.username}}</h5>
+              <p>Mobile : {{profile.mobile }}</p>
+              <p>Email : {{profile.user_id.email }}</p>
+              <p>Gender : {{profile.gender}}</p>
+          </div>
+      </div>
+  </div>
+</body>
+{% endblock %}
+</html>
