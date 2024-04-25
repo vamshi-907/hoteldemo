@@ -2,14 +2,125 @@
 <html>
 <head>
     <title>Email Verification</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            box-sizing: border-box;
+        }
+
+        .container {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: linear-gradient(rgba(20, 50, 100, 0.6), rgba(20, 50, 100, 0.6)), url("/static/images/sign-up-bg.jpg");
+            background-position: center;
+            background-size: cover;
+
+        }
+
+        .form-box {
+            width: 100%;
+            max-width: 450px;
+            background-color: rgba(255, 255, 255, 0.5);
+            padding: 50px 60px 70px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .form-box h1 {
+            font-size: 30px;
+            margin-bottom: 30px;
+            color: black;
+        }
+
+        .input-field {
+            position: relative;
+            margin-bottom: 20px;
+            animation: slideInLeft 1s ease forwards;
+        }
+
+        .input-field input {
+            width: calc(100% - 20px);
+            padding: 10px 30px 10px 40px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        .input-field i {
+            position: absolute;
+            top: 50%;
+            left: 20px;
+            transform: translateY(-50%);
+            color: #555;
+        }
+
+        .input-field input:focus {
+            border-color: #3ceeae;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4f868c;
+            color: white;
+            font-size: larger;
+            cursor: pointer;
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .btn:hover {
+            background-color: #357376;
+        }
+
+        /* Keyframes for animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+    </style>
 </head>
 <body>
-    <h2>Email Verification</h2>
-    <form method="post">
-        {% csrf_token %}
-        <label for="otp">OTP:</label>
-        <input type="text" id="otp" name="otp" required><br><br>
-        <input type="submit" value="Verify OTP">
-    </form>
+    <div class="container">
+        <div class="form-box">
+            <h1>Email Verification</h1>
+            <form method="post">
+                {% csrf_token %}
+                <div class="input-field">
+                    <label for="otp">OTP:</label>
+                    <input type="text" id="otp" name="otp" required>
+                </div>
+                <br>
+                <input type="submit" value="Verify OTP" class="btn">
+            </form>
+        </div>
+    </div>
 </body>
 </html>
