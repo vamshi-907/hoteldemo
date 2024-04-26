@@ -23,15 +23,16 @@
         }
     </style>
 </head>
-<body>
+   <body style="background-color: #DFF5FF;">
   <div class="content-section">
       <div class="media" >
-          <img class="rounded-cricle account-img" src="{{ profile.image.url }}">
+          <img class="rounded-circle account-img" src="{{ profile.image.url }}">
           <div class="media-body">
-              <h5>Username : {{profile.user_id.username}}</h5>
-              <p>Mobile : {{profile.mobile }}</p>
-              <p>Email : {{profile.user_id.email }}</p>
-              <p>Gender : {{profile.gender}}</p>
+              <h5>Username : {{ profile.user_id.username }}</h5>
+              <p>Mobile : {{ profile.mobile }}</p>
+              <p>Email : {{ profile.user_id.email }}</p>
+              <p>Gender : {{ profile.gender }}</p>
+              <a href="{% url 'editprofile' %}" class="btn btn-primary">Edit Profile</a>
           </div>
       </div>
   </div>

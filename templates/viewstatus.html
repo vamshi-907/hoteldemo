@@ -5,28 +5,31 @@
 <head>
     <meta charset="UTF-8">
     <title>Booking Status</title>
+    <style>
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background: #DFF5FF;
+        }
+        h1 {
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-    <h1>Payment Status</h1>
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Hotel Name</th>
-                <th>Amount Paid</th>
-                <th>Order ID</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for payment in payments %}
-            <tr>
-                <td>{{ payment.hotel_name }}</td>
-                <td>{{ payment.amount_paid }}</td>
-                <td>{{ payment.order_id }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <div class="container">
+        <h1>Payment Status</h1>
+        {% for payment in payments %}
+        <div>
+            <p><strong>Hotel Name:</strong> {{ payment.hotel_name }}</p>
+            <p><strong>Amount Paid:</strong> {{ payment.amount_paid }}</p>
+            <p><strong>Order ID:</strong> {{ payment.order_id }}</p>
+        </div>
+        {% endfor %}
+    </div>
 </body>
 {% endblock %}
-
-</html>

@@ -88,6 +88,7 @@ body {
   color: var(--white);
 }
 
+
 .header__content p {
   color: var(--extra-light);
 }
@@ -380,12 +381,14 @@ body {
 
     </style>
   </head>
-  <body>
+   <body style="background-color: #FFE7E7;">
 
     <header class="section__container header__container">
       <div class="header__image__container">
         <div class="header__content">
-          <h1>Enjoy Your Dream Vacation</h1>
+          <h1>Admin Home</h1>
+          <h1>Add Hotels</h1>
+          <h1>View Hotels</h1>
         </div>
 
       </div>
@@ -396,63 +399,39 @@ body {
       <div class="popular__grid">
         <div class="popular__card">
 
-          <img src="{% static 'images/hotel 1.jpg' %}" alt="popular hotel" >
+          <a href="{% url 'add_hotel' %}"><img src="{% static 'images/luxurious.jpg' %}" alt="popular hotel" ></a>
           <div class="popular__content">
             <div class="popular_card_header">
-              <h4>The Taj Mahal Hotel</h4>
-              <h4>Rs 21,000</h4>
+              <h4>AC Deluxe Hotels</h4>
+              <br>
+              <a href="{% url 'add_hotel' %}"><h3> Add Hotels</h3></a>
+              <br>
             </div>
-            <p>Mumbai, India</p>
+            <p>Add luxurious AC deluxe hotels to the platform</p>
           </div>
         </div>
         <div class="popular__card">
-          <img src="{% static 'images/hotel 2.jpg' %}" alt="popular hotel" />
+          <a href="{% url 'add_hotel' %}"><img src="{% static 'images/AC.jpeg' %}" alt="popular hotel" /></a>
           <div class="popular__content">
             <div class="popular_card_header">
-              <h4> Novotel </h4>
-              <h4> Rs 24,000</h4>
+              <h4> AC Hotels</h4>
+              <br>
+              <a href="{% url 'add_hotel' %}"><h3> Add Hotels</h3></a>
+              <br>
             </div>
-            <p>Visakhapatnam, India</p>
+            <p>Add comfortable AC hotels to the platform.</p>
           </div>
         </div>
         <div class="popular__card">
-          <img src="{% static 'images/hotel 3.jpg' %}" alt="popular hotel" />
+          <a href="{% url 'add_hotel' %}"><img src="{% static 'images/affordable.jpg' %}" alt="popular hotel" /></a>
           <div class="popular__content">
             <div class="popular_card_header">
-              <h4>Marriott Hotel</h4>
-              <h4>Rs 9,000</h4>
+              <h4>Non-AC Hotels</h4>
+              <br>
+              <a href="{% url 'add_hotel' %}"><h3> Add Hotels</h3></a>
+              <br>
             </div>
-            <p>Hyderabad India</p>
-          </div>
-        </div>
-        <div class="popular__card">
-          <img src="{% static 'images/hotel 4.png' %}" alt="popular hotel" />
-          <div class="popular__content">
-            <div class="popular_card_header">
-              <h4>ITC Grand Chola</h4>
-              <h4>Rs 15,000</h4>
-            </div>
-            <p>Chennai India</p>
-          </div>
-        </div>
-        <div class="popular__card">
-          <img src="{% static 'images/hotel 5.jpg' %}" alt="popular hotel" />
-          <div class="popular__content">
-            <div class="popular_card_header">
-              <h4>Lemon Tree Hotel</h4>
-              <h4>Rs 4,000</h4>
-            </div>
-            <p>Bangalore, India</p>
-          </div>
-        </div>
-        <div class="popular__card">
-          <img src="{% static 'images/hotel 6.jpg' %}" alt="popular hotel" />
-          <div class="popular__content">
-            <div class="popular_card_header">
-              <h4>Samrat Hotel</h4>
-              <h4>Rs 3,000</h4>
-            </div>
-            <p>Delhi India</p>
+            <p>Add affordable non-AC hotels to the platform.</p>
           </div>
         </div>
       </div>

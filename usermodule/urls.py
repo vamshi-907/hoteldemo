@@ -10,5 +10,6 @@ urlpatterns = [
     path('contactus', views.contactus, name='contactus'),
     path('view_profile',views.viewprofile,name='view_profile'),
     path('email_verification',views.email_verification,name='email_verification'),
-    path('viewstatus', views.viewstatus, name='viewstatus')
+    path('viewstatus', views.viewstatus, name='viewstatus'),
+    path('editprofile',views.editprofile,name='editprofile'),
 ]

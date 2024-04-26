@@ -18,7 +18,6 @@ def signup(request):
         gender = request.POST['gender']
         mobile = request.POST['phone']
         image = request.FILES.get('image')
-        print(image)
 
         if password1 != password2:
             messages.error(request, 'Passwords do not match')
@@ -117,3 +116,29 @@ def viewstatus(request):
         }
         payment_data.append(payment_info)
     return render(request, 'viewstatus.html', {'payments': payment_data})
+
+
+def editprofile(request):
+    profile = request.user.users
+    if request.method == 'POST':
+        profile.mobile = request.POST.get('mobile')
+        profile.gender = request.POST.get('gender')
+        if 'image' in request.FILES:
+            profile.image = request.FILES['image']
+        new_username = request.POST.get('username')
+        new_email = request.POST.get('email')
+        if new_username != profile.user_id.username:
+            if User.objects.filter(username=new_username).exists():
+                messages.error(request, 'Username is already taken. Please choose a different one.')
+                return redirect('editprofile')
+            profile.user_id.username = new_username
+        if new_email != profile.user_id.email:
+            if User.objects.filter(email=new_email).exists():
+                messages.error(request, 'Email is already associated with another account. Please choose a different one.')
+                return redirect('editprofile')
+            profile.user_id.email = new_email
+        profile.user_id.save()
+        profile.save()
+        messages.success(request, 'Your profile has been updated successfully.')
+        return redirect('view_profile')
+    return render(request, 'editprofile.html', {'profile': profile})

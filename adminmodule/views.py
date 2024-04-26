@@ -50,8 +50,8 @@ def add_hotel(request):
             HotelImage.objects.create(hotel=hotel, image=image)
 
         hotel.save()
-        return redirect('view_hotels')  # Redirect to view_hotels view
-    return render(request, 'add_hotel.html')  # Render add_hotel.html template if request method is not POST
+        return redirect('view_hotels')
+    return render(request, 'add_hotel.html')
 
 def view_hotels(request):
     hotels = Hotel.objects.all()
